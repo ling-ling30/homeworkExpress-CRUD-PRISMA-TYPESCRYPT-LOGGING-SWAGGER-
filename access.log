@@ -1,0 +1,4 @@
+::ffff:127.0.0.1 - - [03/Aug/2023:07:40:11 +0000] "GET /api-docs/ HTTP/1.1" 404 18
+::ffff:127.0.0.1 - - [03/Aug/2023:07:40:11 +0000] "GET /favicon.ico HTTP/1.1" 404 18
+::1 - - [03/Aug/2023:07:43:08 +0000] "POST /users/register HTTP/1.1" 400 41
+::1 - - [03/Aug/2023:07:43:10 +0000] "GET /api/movies?title=a HTTP/1.1" 200 942

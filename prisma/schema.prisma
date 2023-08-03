@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model movies {
+  id     Int     @id @default(autoincrement())
+  title  String? @db.VarChar(150)
+  genres String? @db.VarChar(50)
+  year   String? @db.VarChar(50)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model users {
+  id       Int     @id @default(autoincrement())
+  email    String? @db.VarChar(50)
+  gender   String? @db.VarChar(50)
+  password String? @db.VarChar(50)
+  role     String? @db.VarChar(50)
+}
+
+model migrations {
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(255)
+  run_on DateTime @db.Timestamp(6)
+}
