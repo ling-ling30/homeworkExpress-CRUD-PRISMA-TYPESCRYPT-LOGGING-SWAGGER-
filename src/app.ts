@@ -5,7 +5,7 @@ import express from "express";
 import morgan from "morgan";
 import { errorHandlerMiddleware } from "./middleware/error-handler";
 import { notFound } from "./middleware/notfound";
-import loginRegisterRoute from "./routes/login-register";
+import loginRegisterRoute from "./routes/api-users";
 import moviesAPIRoute from "./routes/api-movies";
 import dotenv from "dotenv";
 import requireJsonContent from "./middleware/jsonContent";

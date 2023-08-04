@@ -4,14 +4,14 @@ const prisma = new PrismaClient();
 
 const createMovies = async(req:any, res:any) => {
     const data = req.body as any
-    if(data.title && data.genress && data.year){
+    if(data.title && data.genres && data.year){
     const newMovies = await prisma.movies.create({data})
     res.status(201).json({msg:`Movies is created` ,newMovies})
-}else {throw new CustomAPIError('the data is invalid',400)}
+}else {throw new CustomAPIError('the data is invalid, please provide title, genre and year',400)}
 }
 const getMovies = async ( req: any , res:any ) => {
     const {id, title, genres, year} = req.query
-    const queryObject = {id, title, genres} as any
+    const queryObject = {id, title, genres,year} as any
     // check if the data is presented
     if(id){
         queryObject.id = Number(id)
@@ -55,7 +55,7 @@ const updateMovies = async ( req: any , res: any ) => {
 
     //if data is present, then match it in the database and return the data
 
-    if (data.title|| data.genres|| data.year){
+    if (data.title|| data.genres|| data.year || data.id){
    try {
      const updatedData = await prisma.movies.update({where: queryObject, data: data})   
      res.status(200).json({msg: `Data is successfully updated`, data: updatedData})

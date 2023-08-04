@@ -40,7 +40,7 @@
 
 import express from 'express'; 
 import authenticationMiddleware from '../middleware/auth'
-import {getMovies, updateMovies, deleteMovies, createMovies} from '../controllers/main';
+import {getMovies, updateMovies, deleteMovies, createMovies} from '../controllers/main_movies';
 
 const router = express.Router();
 
@@ -101,10 +101,10 @@ router.route('/')
  *           example: {"message": "UNAUTHORIZED! something is wrong"}
  */
 
-    .get(authenticationMiddleware, getMovies)
-    
-    
-    /**
+   .get(authenticationMiddleware, getMovies)
+   
+   
+/**
  * @swagger
  * /api/movies/}:
  *   put:
@@ -138,13 +138,14 @@ router.route('/')
 
  *     responses:
  *      200: 
- *       description: the list of movies
+ *       description: Show updated movies
  *       content: 
  *         application/json:
  *           schema:
  *             type: object
  *             items: 
  *               $ref: '#/components/schemas/movies'
+ *           example: {msg: "Data is successfully updated"}
  *      400 :
  *       description: bad request because of invalid data
  *       content: 
@@ -195,20 +196,21 @@ router.route('/')
 
  *     responses:
  *      200: 
- *       description: the list of movies
+ *       description: Display created movie
  *       content: 
  *         application/json:
  *           schema:
  *             type: object
  *             items: 
  *               $ref: '#/components/schemas/movies'
+ *             example: {msg:'Movies is created' , data}
  *      400 :
  *       description: bad request because of invalid data
  *       content: 
  *         application/json:
  *           schema:
  *             type: object
- *           example: {"msg": "Data is invalid"}
+ *           example: {'the data is invalid, please provide title, genre and year'}
 
  *      401 :
  *       description: Unauthorized
@@ -249,13 +251,14 @@ router.route('/')
 
  *     responses:
  *      200: 
- *       description: the list of movies
+ *       description: Show deleted movies
  *       content: 
  *         application/json:
  *           schema:
  *             type: object
  *             items: 
  *               $ref: '#/components/schemas/movies'
+ *           example: {msg: "user is deleted"}
  *      400 :
  *       description: bad request because of invalid data
  *       content: 
