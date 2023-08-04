@@ -31,7 +31,21 @@
  *            year: 2020
  */
 
-/**
+
+
+
+
+
+
+
+import express from 'express'; 
+import authenticationMiddleware from '../middleware/auth'
+import {getMovies, updateMovies, deleteMovies, createMovies} from '../controllers/main';
+
+const router = express.Router();
+
+router.route('/')
+     /**
  * @swagger
  * /api/movies/:
  *   get:
@@ -86,7 +100,11 @@
  *             type: object
  *           example: {"message": "UNAUTHORIZED! something is wrong"}
  */
-/**
+
+    .get(authenticationMiddleware, getMovies)
+    
+    
+    /**
  * @swagger
  * /api/movies/}:
  *   put:
@@ -143,7 +161,8 @@
  *             type: object
  *           example: {"message": "UNAUTHORIZED! something is wrong"}
  */
-/**
+    .put(authenticationMiddleware, updateMovies)
+    /**
  * @swagger
  * /api/movies:
  *   post:
@@ -201,7 +220,8 @@
 
  */
 
-/**
+    .post(authenticationMiddleware,createMovies)
+    /**
  * @swagger
  * /api/movies/:
  *   delete:
@@ -253,19 +273,5 @@
  *           example: {"message": "UNAUTHORIZED! something is wrong"}
 
  */
-
-
-
-
-import express from 'express'; 
-import authenticationMiddleware from '../middleware/auth'
-import {getMovies, updateMovies, deleteMovies, createMovies} from '../controllers/main';
-
-const router = express.Router();
-
-router.route('/')
-    .get(authenticationMiddleware, getMovies)
-    .put(authenticationMiddleware, updateMovies)
-    .post(authenticationMiddleware,createMovies)
     .delete(authenticationMiddleware, deleteMovies)
 export default router

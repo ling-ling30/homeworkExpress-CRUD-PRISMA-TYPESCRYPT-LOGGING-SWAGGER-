@@ -41,16 +41,13 @@
  *     tags : 
  *       - Login
  *     summary: login to an existing account
- *     parameters:  
- *       
- *       - name : email
- *         in : body
- *         example: 
- *           "test@test.com"
- *       - name : password
- *         in : body
- *         example: 
- *           "ASDKsdVhIW"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *              type: object 
+ *           example: {"email": "test@test.com", "password": "abcdefg"}
  *     responses:
  *      200: 
  *       description: success
@@ -58,6 +55,8 @@
  *         application/json:
  *           schema:
  *             type: object
+ *           example: { "msg": "success",  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzAxLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2OTExMzY1MTksImV4cCI6MTY5MTE0MDExOX0.5k8n7Np8LAzl7htyLzO3pwV-6EhQjzbJZuFcBQioFY0"}
+ *            
  *             
  *      
  *      400 :
@@ -66,6 +65,7 @@
  *         application/json:
  *           schema:
  *             type: object
+ *             example: {"message": "Email is not registered"}
  */
 
 /**
@@ -75,15 +75,12 @@
  *     tags : 
  *       - Register
  *     summary: Register a new account
- *     parameters:  
- *       - name : email
- *         in : body
- *         example: 
- *           "test@test.com"
- *       - name : password
- *         in : body
- *         example: 
- *           "ASDKsdVhIW"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema: 
+ *             $ref: '#components/schemas/users'
  *     responses:
  *      200: 
  *       description: success
@@ -91,7 +88,7 @@
  *         application/json:
  *           schema:
  *             type: object
- *             
+ *             example: {msg:'user successfully registered'}
  *      
  *      400 :
  *       description: bad request because of invalid data
@@ -99,6 +96,9 @@
  *         application/json:
  *           schema:
  *             type: object
+ *             example: 
+ *                  {"message": "Invalid email or password"}
+ *                  
  */
 
 import express from 'express'
